@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <script>
+        window.onload = function () {
+            var oTxtUser = document.getElementById("username");
+            var oTxtPass = document.getElementById("password");
+            var oBtnReg = document.getElementById("reg_btn");
+            var oBtnLogin = document.getElementById("log_btn");
+            oBtnReg.onclick = function () {
+               $.ajax({
+                   url: "/user",
+                   data: {act: "reg", user: oTxtUser.value, pass: oTxtPass.value},
+                   type: "get",
+                   success: function (str) {
+                       let json = eval('(' + str + ')')
+                       if (json.ok) {
+                           alert("注册成功");
+                           console.log("注册成功");
+                       } else {
+                           alert("注册失败: " + json.msg);
+                           console.log("注册失败" + json.msg);
+                       }
+                   },
+                   error: function () {
+                       alert("通信错误");
+                       console.log("通信错误");
+                   }
+               })
+            }
+            oBtnLogin.onclick = function () {
+                $.ajax({
+                   url: "/user",
+                   data: {act: "log", user: oTxtUser.value, pass: oTxtPass.value},
+                   type: "get",
+                   success: function (str) {
+                       let json = eval('(' + str + ')')
+                       if (json.ok) {
+                           alert("登录成功");
+                           console.log("登录成功");
+                       } else {
+                           console.log("登录失败: " + json.msg);
+                           alert("登录失败: " + json.msg);
+                       }
+                   },
+                   error: function () {
+                       alert("通信错误");
+                   } 
+                }) 
+            }
+        };
+    </script>
+</head>
+<body>
+   用户: <input type="text" name="username" id="username"><br>
+   密码: <input type="password" name="password" id="password" value=""><br> 
+   <input type="button" value="注册" id="reg_btn">
+   <input type="button" value="登录" id="log_btn">
+</body>
+</html>

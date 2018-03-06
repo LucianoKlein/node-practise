@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <script>
+    window.onload = function() {
+        let oUser = document.getElementById("user");
+        let oPass = document.getElementById("pass");
+        let oBtn  = document.getElementById("btn1");
+        let oReg  = document.getElementById("btn2");
+        oBtn.onclick = function() {
+            $.ajax({
+                url: "/login",
+                data: {
+                    user: oUser.value,
+                    pass: oPass.value
+                },
+                success: function(str) {
+                    if (str.ok) {
+                        console.log("登录成功");
+                    } else {
+                        console.log("失败:" + str.msg);
+                    }
+                },
+                error: function () {
+                    console.log("通信失败");
+                }
+            })
+        }
+    }
+    </script>
+</head>
+<body>
+   用户: <input type="text" id="user"><br>
+   密码: <input type="password" id="pass"><br>
+   <input type="button" value="登录" id="btn1">
+   <input type="button" value="注册" id="btn2">
+</body>
+
+</html>

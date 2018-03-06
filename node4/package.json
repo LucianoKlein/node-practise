@@ -1,0 +1,15 @@
+{
+  "name": "test32232232",
+  "version": "1.0.5",
+  "description": "这是一个测试包，千万不要下，谁下谁傻逼",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qpwoei8384",
+  "license": "ISC",
+  "keywords": [
+    "test", "11", "22", "33"
+  ]
+
+}
